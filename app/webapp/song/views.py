@@ -1,7 +1,6 @@
-from django.shortcuts import render
 from .models import Song
 from .serializers import SongSerializer
-from django.http import JsonResponse, HttpResponse
+from django.http import JsonResponse
 
 def get_all(request):
     songs = Song.objects.all()
