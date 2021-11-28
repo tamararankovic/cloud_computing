@@ -6,5 +6,5 @@ from counter.views import increment
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('song/', get_all),
-    path('counter/<int:id>', increment)
+    path('counter/', increment)
 ]
