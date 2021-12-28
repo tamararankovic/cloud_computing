@@ -9,35 +9,24 @@ services:
     restart: on-failure
     ports:
       - 8000:8000
-    environment:
-      - SECRET_KEY=django-insecure-lo_b*v^p9-37nlx2u^_5a&y5*m@$uint%*t66=xrd+=571c5&y
-      - DB_NAME=ccdb
-      - DB_USER=postgres
-      - DB_PASSWORD=admin
-      - DB_HOST=postgres
-      - DB_PORT=5432
+    env_file: 
+      - ./env/webapp.env
     depends_on:
       - postgres
     networks:
       - app2db
 
   postgres:
-    image: postgres
+    image: postgres:14
     container_name: postgres
     restart: on-failure
-    environment:
-      - POSTGRES_USERNAME=postgres
-      - POSTGRES_PASSWORD=admin
-      - POSTGRES_DB=ccdb
+    env_file: 
+      - ./env/db.env
     networks:
       - app2db
     volumes:
-      - dbdata:/var/lib/postgresql/data
+      - /var/lib/postgresql/data
 
 networks:
   app2db:
-    name: app2db
     driver: bridge
-
-volumes:
-  dbdata:

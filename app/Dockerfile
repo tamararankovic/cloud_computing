@@ -8,8 +8,6 @@ RUN pip install poetry
 RUN poetry install
 COPY webapp /usr/src/webapp
 
-EXPOSE 8000
-
 CMD cd webapp && \
     poetry run python manage.py makemigrations && \
     poetry run python manage.py migrate && \
