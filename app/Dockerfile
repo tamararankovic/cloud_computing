@@ -3,7 +3,7 @@ FROM python:3.9
 WORKDIR /usr/src
 
 RUN apt update
-COPY pyproject.toml poetry.lock /usr/src
+COPY pyproject.toml poetry.lock /usr/src/
 RUN pip install poetry
 RUN poetry install
 COPY webapp /usr/src/webapp
