@@ -1,31 +1,56 @@
 version: "3.8"
 
 services:
-
-  webapp:
+  webapp1:
     image: tamarar/cloud_computing:0.1
-    container_name: webapp
+    container_name: webapp1
     restart: on-failure
     ports:
       - 8000:8000
     env_file: 
-      - ./env/webapp.env
+      - ./env/webapp1.env
     depends_on:
-      - postgres
+      - postgres1
     networks:
-      - app2db
+      - app2db1
 
-  postgres:
+  webapp2:
+    image: tamarar/cloud_computing:0.1
+    container_name: webapp2
+    restart: on-failure
+    ports:
+      - 8001:8000
+    env_file: 
+      - ./env/webapp2.env
+    depends_on:
+      - postgres2
+    networks:
+      - app2db2
+
+  postgres1:
     image: postgres:14
-    container_name: postgres
+    container_name: postgres1
     restart: on-failure
     env_file: 
-      - ./env/db.env
+      - ./env/db1.env
     networks:
-      - app2db
+      - app2db1
+    volumes:
+      - /var/lib/postgresql/data
+      
+  postgres2:
+    image: postgres:14
+    container_name: postgres2
+    restart: on-failure
+    env_file: 
+      - ./env/db2.env
+    networks:
+      - app2db2
     volumes:
       - /var/lib/postgresql/data
 
 networks:
-  app2db:
+  app2db1:
+    driver: bridge
+  app2db2:
     driver: bridge
