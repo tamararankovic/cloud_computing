@@ -11,4 +11,4 @@ COPY webapp /usr/src/webapp
 CMD cd webapp && \
     poetry run python manage.py makemigrations && \
     poetry run python manage.py migrate && \
-    poetry run python manage.py runserver 0.0.0.0:8000
+    poetry run gunicorn --bind 0.0.0.0:8000 webapp.wsgi
