@@ -24,7 +24,7 @@ jobs:
       - name: Build image and push to Docker Hub
         uses: docker/build-push-action@v2
         with:
-          context: ./app
+          context: ./app/webapp
           tags: |
             tamarar/cloud_computing:0.1
             tamarar/cloud_computing:latest
