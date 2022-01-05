@@ -2,7 +2,7 @@ version: "3.8"
 
 services:
   webapp1:
-    image: tamarar/cloud_computing:0.1
+    image: tamarar/cloud_computing
     container_name: webapp1
     restart: on-failure
     ports:
@@ -15,7 +15,7 @@ services:
       - app2db1
 
   webapp2:
-    image: tamarar/cloud_computing:0.1
+    image: tamarar/cloud_computing
     container_name: webapp2
     restart: on-failure
     ports:
