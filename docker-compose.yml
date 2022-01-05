@@ -5,8 +5,6 @@ services:
     image: tamarar/cloud_computing
     container_name: webapp1
     restart: on-failure
-    ports:
-      - 8000:8000
     env_file: 
       - ./env/webapp1.env
     depends_on:
@@ -18,8 +16,6 @@ services:
     image: tamarar/cloud_computing
     container_name: webapp2
     restart: on-failure
-    ports:
-      - 8001:8000
     env_file: 
       - ./env/webapp2.env
     depends_on:
@@ -48,6 +44,17 @@ services:
       - app2db2
     volumes:
       - /var/lib/postgresql/data
+
+  nginx:
+    build: ./nginx/
+    image: nginx
+    container_name: nginx
+    restart: on-failure
+    ports:
+      - 80:80
+    networks:
+      - app2db1
+      - app2db2
 
 networks:
   app2db1:
